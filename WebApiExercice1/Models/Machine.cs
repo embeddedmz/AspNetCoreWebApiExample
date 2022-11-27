@@ -14,5 +14,9 @@ namespace Cegefos.Api.Models
         public string Memoire { get; set; }
         public string Capacite { get; set; }
         public double Taille_Ecran { get; set; }
+
+        public int SalleId { get; set; }
+        [JsonIgnore]
+        public virtual Salle Salle { get; set; }
     }
 }

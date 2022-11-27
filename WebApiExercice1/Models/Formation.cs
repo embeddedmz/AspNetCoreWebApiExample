@@ -9,8 +9,10 @@ namespace Cegefos.Api.Models
     {
         public int Id { get; set; }
         public string Libelle { get; set; }
-        public Cours Cours { get; set; }
-        public Salle Salle { get; set; }
+        public int CoursId { get; set; }
+        public virtual Cours Cours { get; set; }
+        public int SalleId { get; set; }
+        public virtual Salle Salle { get; set; }
         public DateTime DateDebut { get; set; }
     }
 }

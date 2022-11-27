@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Cegefos.Api.Models
@@ -12,5 +13,8 @@ namespace Cegefos.Api.Models
         public string Titre { get; set; }
         public int Durée { get; set; }
         public string Programme { get; set; }
+
+        [JsonIgnore]
+        public virtual List<Formation> Formations { get; set; }
     }
 }
