@@ -1,6 +1,7 @@
 ﻿using Cegefos.Api.Classes;
 using Cegefos.Api.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -61,6 +62,57 @@ namespace Cegefos.Api.Controllers
             }
             
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<Salle> PostSalle([FromBody] Salle salle)
+        {
+            _context.Salles.Add(salle);
+            _context.SaveChanges();
+
+            return CreatedAtAction("PostSalle", new { id = salle.Id }, salle);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutSalle([FromRoute] int id, [FromBody] Salle salle)
+        {
+            if (id != salle.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(salle).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                if (!_context.Salles.Any(salle => salle.Id == id))
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Salle> DeleteSalle(int id)
+        {
+            Salle salle = _context.Salles.Find(id);
+            if (salle == null)
+            {
+                return NotFound();
+            }
+
+            _context.Salles.Remove(salle);
+            _context.SaveChanges();
+
+            return salle;
         }
     }
 }

@@ -61,5 +61,56 @@ namespace Cegefos.Api.Controllers
 
             return NotFound();
         }
+
+        [HttpPost]
+        public ActionResult<Formation> PostFormation([FromBody] Formation formation)
+        {
+            _context.Formations.Add(formation);
+            _context.SaveChanges();
+
+            return CreatedAtAction("PostFormation", new { id = formation.Id }, formation);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutFormation([FromRoute] int id, [FromBody] Formation formation)
+        {
+            if (id != formation.Id)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(formation).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                if (!_context.Formations.Any(f => f.Id == id))
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Formation> DeleteFormation(int id)
+        {
+            Formation formation = _context.Formations.Find(id);
+            if (formation == null)
+            {
+                return NotFound();
+            }
+
+            _context.Formations.Remove(formation);
+            _context.SaveChanges();
+
+            return formation;
+        }
     }
 }

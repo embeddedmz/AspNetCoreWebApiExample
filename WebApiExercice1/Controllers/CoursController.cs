@@ -2,6 +2,7 @@
 using Cegefos.Api.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,56 @@ namespace Cegefos.Api.Controllers
             }
 
             return NotFound();
+        }
+
+        [HttpPost]
+        public ActionResult<Cours> PostCours([FromBody] Cours cours)
+        {
+            _context.Cours.Add(cours);
+            _context.SaveChanges();
+
+            return CreatedAtAction("PostCours", new { id = cours.Id }, cours);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult PutCours([FromRoute] int id, [FromBody] Cours cours)
+        {
+            if (id != cours.Id)
+            {
+                return BadRequest();
+            }
+            _context.Entry(cours).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                if (!_context.Cours.Any(c => c.Id == id))
+                {
+                    return NotFound();
+                }
+
+                throw;
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Cours> DeleteCours([FromRoute] int id)
+        {
+            Cours cours = _context.Cours.Find(id);
+            if (cours == null)
+            {
+                return NotFound();
+            }
+
+            _context.Cours.Remove(cours);
+            _context.SaveChanges();
+
+            return cours;
         }
     }
 }
