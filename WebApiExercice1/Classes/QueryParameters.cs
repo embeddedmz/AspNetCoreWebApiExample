@@ -26,6 +26,8 @@ namespace Cegefos.Api.Classes
 
         public string Libelle { get; set; }
 
+        public string Code { get; set; }
+
         public string SortBy
         {
             get { return _sortBy; }
