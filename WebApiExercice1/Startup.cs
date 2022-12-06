@@ -33,6 +33,17 @@ namespace Cegefos.Api
             services.AddDbContext<CegefosContext>(options =>
                 options.UseInMemoryDatabase("Cegefos"));
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:60599")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddApiVersioning(options =>
             {
                 options.ReportApiVersions = true;
@@ -58,6 +69,8 @@ namespace Cegefos.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

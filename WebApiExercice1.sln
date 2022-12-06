@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cegefos.Api", "WebApiExercice1\Cegefos.Api.csproj", "{D1CEE112-D8DC-467A-B5AC-9C4670C26F6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cegefos.Api", "WebApiExercice1\Cegefos.Api.csproj", "{D1CEE112-D8DC-467A-B5AC-9C4670C26F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cegefos.Web", "Cegefos.Web\Cegefos.Web.csproj", "{780C16CB-331A-4044-8126-0B1AC1166F7F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D1CEE112-D8DC-467A-B5AC-9C4670C26F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1CEE112-D8DC-467A-B5AC-9C4670C26F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1CEE112-D8DC-467A-B5AC-9C4670C26F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780C16CB-331A-4044-8126-0B1AC1166F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780C16CB-331A-4044-8126-0B1AC1166F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780C16CB-331A-4044-8126-0B1AC1166F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780C16CB-331A-4044-8126-0B1AC1166F7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
